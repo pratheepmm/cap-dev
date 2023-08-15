@@ -11,12 +11,19 @@ module "vpc" {
   enable_nat_gateway = true
   enable_vpn_gateway = true
 
-  single_nat_gateway = false
+  single_nat_gateway     = false
   one_nat_gateway_per_az = true
 
   tags = {
-    Terraform = "true"
-    Environment = "dev"
-    Team = "Avengers"
+    Team = "Avengers",
+    Org  = "Cap-Dev"
   }
+}
+
+output "public-subnets" {
+  value = module.vpc.public_subnets
+}
+
+output "private-subnets" {
+  value = module.vpc.private_subnets
 }
